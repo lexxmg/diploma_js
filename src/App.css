@@ -1,0 +1,20 @@
+
+.App {
+
+}
+
+.App__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  margin: 0 -20px;
+}
+
+.App__img {
+  /* display: block; */
+
+  margin: 0 0 20px 0;
+  padding: 0 20px;
+}
