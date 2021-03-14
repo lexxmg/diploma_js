@@ -22,7 +22,7 @@ function App() {
       <ResponsiveMasonry
         columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
       >
-          <Masonry>
+          <Masonry  gutter="10px">
             {
               images.map(obj => {
                 return (

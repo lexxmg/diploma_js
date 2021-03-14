@@ -4,12 +4,12 @@
 }
 
 .App__inner {
-  margin: 0 -20px;
+  /* margin: 0 -20px; */
 }
 
 .App__img {
   display: block;
 
-  margin: 0 0 20px 0;
-  padding: 0 10px;
+  /* margin: 0 0 20px 0;
+  padding: 0 10px; */
 }
