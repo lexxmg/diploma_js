@@ -4,17 +4,12 @@
 }
 
 .App__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-
   margin: 0 -20px;
 }
 
 .App__img {
-  /* display: block; */
+  display: block;
 
   margin: 0 0 20px 0;
-  padding: 0 20px;
+  padding: 0 10px;
 }
