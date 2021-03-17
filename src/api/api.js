@@ -15,11 +15,11 @@ let instance = axios.create({
   }
 });
 
-//https://unsplash.com/oauth/authorize?client_id=_i66pu-AAF7Fk6drWH2jys78579pswAF2DW8Q__DSeQ&redirect_uri=http://localhost:3000&response_type=code&scope=public+write_likes
+export const authUrl = 'https://unsplash.com/oauth/authorize?client_id=_i66pu-AAF7Fk6drWH2jys78579pswAF2DW8Q__DSeQ&redirect_uri=http://localhost:3000&response_type=code&scope=public+write_likes';
 
 export const api = {
   auth() {
-    return axios.post('https://unsplash.com/oauth/token', {
+    axios.post('https://unsplash.com/oauth/token', {
       client_id: '_i66pu-AAF7Fk6drWH2jys78579pswAF2DW8Q__DSeQ',
       client_secret: '_Cp8wCr4mkPd0YqSQiDJAPLUtwi_wORX_gixD3WRCUU',
       redirect_uri: 'http://localhost:3000',

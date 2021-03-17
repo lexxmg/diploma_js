@@ -1,7 +1,7 @@
 
 import './App.css';
 import { useEffect, useState } from 'react';
-import { api } from './api/api';
+import { api, authUrl } from './api/api';
 import Masonry, {ResponsiveMasonry} from 'react-responsive-masonry';
 
 function App() {
@@ -20,11 +20,13 @@ function App() {
     <div className="App fixed-container">
       <div className="App__inner">
 
-      <button className="App__btn" onClick={() => api.auth('U9Divbch2kk')}>auth</button>
+      <a href={authUrl}>Запрос авторизации</a>
+
+      <button className="App__btn" onClick={() => api.auth()}>Получить токен</button>
       <button onClick={() => {
         setCurrentPages(currentPages + 1);
       }}>ещё</button>
-      
+
       <ResponsiveMasonry
         columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
       >
