@@ -1,0 +1,28 @@
+.photo-card {
+  position: relative;
+
+  color: white;
+}
+
+.photo-card__img {
+  display: block;
+}
+
+.photo-card__descriptions {
+
+}
+
+.photo-card-descriptions {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 50;
+}
+
+.photo-card-descriptions__likes {
+
+}
+
+.photo-card-descriptions__data {
+
+}
