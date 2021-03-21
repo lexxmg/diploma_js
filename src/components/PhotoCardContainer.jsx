@@ -11,6 +11,7 @@ const PhotoCardContainer = (props) => {
   useEffect(() => {
     props.detPhoto(props.currentPage, 3);
     //props.setCurrentPage(props.currentPage + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
