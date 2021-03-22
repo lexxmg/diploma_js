@@ -2,6 +2,7 @@
 import './photo-card.css';
 import { useState } from 'react';
 import cn from 'classnames';
+import { NavLink } from 'react-router-dom';
 
 const PhotoCatd = (props) => {
   const [ descriptionShow, setDescriptionShow ] = useState(false);
@@ -9,19 +10,21 @@ const PhotoCatd = (props) => {
   console.log(props.photo);
 
   return (
-    <div className={cn('photo-card', {darkened: descriptionShow})}
-      onMouseOver={() => setDescriptionShow(true)}
-      onMouseOut={() => setDescriptionShow(false)}
-      onClick={() => alert('full')}
-    >
-      <img
-        className="photo-card__img"
-        src={props.photo.urls.small}
-        alt={props.photo.photoalt_description}
-      />
+    <NavLink to={"/full/" + props.photo.id}>
+      <div className={cn('photo-card', {darkened: descriptionShow})}
+        onMouseOver={() => setDescriptionShow(true)}
+        onMouseOut={() => setDescriptionShow(false)}
+      >
 
-      {descriptionShow && <PhotoDescriptions {...props} />}
-    </div>
+        <img
+          className="photo-card__img"
+          src={props.photo.urls.small}
+          alt={props.photo.photoalt_description}
+        />
+
+        {descriptionShow && <PhotoDescriptions {...props} />}
+      </div>
+    </NavLink>
   )
 }
 

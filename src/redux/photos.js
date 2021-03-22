@@ -2,12 +2,20 @@
 import { unsplashApi } from '../api/api';
 
 const SET_PHOTOS = 'SET_PHOTOS',
+      SET_ADDING_PHOTOS = 'SET_ADDING_PHOTOS',
       SET_LOADING = 'SET_LOADING',
       SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 export const setPhotos = (photos) => {
   return {
     type: SET_PHOTOS,
+    photos
+  }
+}
+
+export const setAddingPhotos = (photos) => {
+  return {
+    type: SET_ADDING_PHOTOS,
     photos
   }
 }
@@ -28,12 +36,27 @@ export const setLoading = (load) => {
 
 export const getPhotos = (page, perPage) => {
   return dispatch => {
-    dispatch(setLoading(true));
+    dispatch( setLoading(true) );
 
     unsplashApi.getPhotos(page, perPage).then(photos => {
       //console.log(photos);
-      dispatch(setPhotos(photos));
-      dispatch(setLoading(false));
+      dispatch( setPhotos(photos) );
+      dispatch( setLoading(false) );
+    })
+  }
+}
+
+export const addingPhoto = () => {
+  return (dispatch, getState) => {
+    const currentPage = getState().photos.currentPage;
+
+    dispatch( setLoading(true) );
+
+    unsplashApi.getPhotos(currentPage, 3).then(photos => {
+      //console.log(photos);
+      dispatch( setCurrentPage(currentPage + 1) );
+      dispatch( setAddingPhotos(photos) );
+      dispatch( setLoading(false) );
     })
   }
 }
@@ -47,6 +70,8 @@ const initialState = {
 export const photos = (state = initialState, action) => {
   switch (action.type) {
     case SET_PHOTOS:
+      return { ...state, photos: action.photos };
+    case SET_ADDING_PHOTOS:
       return { ...state, photos: [...state.photos, ...action.photos] };
     case SET_CURRENT_PAGE:
       return { ...state, currentPage: action.page };

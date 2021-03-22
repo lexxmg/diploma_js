@@ -1,13 +1,18 @@
 
 import './App.css';
-//import { unsplashApi } from './api/api';
-import PhotoCardContainer from './components/PhotoCardContainer.jsx'
+import { Route, Link } from 'react-router-dom';
+import PhotoCardContainer from './components/PhotoCard/PhotoCardContainer';
 
 
 function App() {
   return (
-    <div className="App fixed-container">
-      <PhotoCardContainer />
+    <div className="App">
+      <Route exact path="/" component={PhotoCardContainer}></Route>
+
+      <Route path="/full">
+        <Link to="/"><h1>full</h1></Link>
+      </Route>
+
     </div>
   );
 }

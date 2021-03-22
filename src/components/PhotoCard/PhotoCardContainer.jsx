@@ -1,6 +1,7 @@
 
+import './photo-card-container.css';
 import { connect } from 'react-redux';
-import { getPhotos, setCurrentPage } from '../redux/photos';
+import { getPhotos, setCurrentPage, addingPhoto } from '../../redux/photos';
 import { useEffect } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import PhotoCatd from './PhotoCard/PhotoCard';
@@ -16,17 +17,24 @@ const PhotoCardContainer = (props) => {
 
 
   return (
-    <ResponsiveMasonry
-      columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
-    >
-       <Masonry gutter="10px">
-          {
-            props.photos.map(obj => {
-              return <PhotoCatd key={obj.id} photo={obj} />
-            })
-          }
-       </Masonry>
-    </ResponsiveMasonry>
+    <div className="photo-card-container fixed-container">
+      <button
+        className="photo-card-container"
+        onClick={props.addingPhoto}
+      >next</button>
+
+      <ResponsiveMasonry
+        columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+      >
+         <Masonry gutter="10px">
+            {
+              props.photos.map(obj => {
+                return <PhotoCatd key={obj.id} photo={obj} />
+              })
+            }
+         </Masonry>
+      </ResponsiveMasonry>
+    </div>
   )
 }
 
@@ -45,6 +53,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setCurrentPage: (page) => {
       dispatch( setCurrentPage(page) );
+    },
+    addingPhoto: () => {
+      dispatch( addingPhoto() );
     }
   }
 }
