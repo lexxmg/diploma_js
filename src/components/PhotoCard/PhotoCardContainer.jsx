@@ -1,26 +1,55 @@
 
 import './photo-card-container.css';
 import { connect } from 'react-redux';
-import { getPhotos, setCurrentPage, addingPhoto } from '../../redux/photos';
-import { useEffect } from 'react';
+import { getPhotos, setCurrentPage } from '../../redux/photos';
+import { useEffect, useState } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import PhotoCatd from './PhotoCard/PhotoCard';
 
 const PhotoCardContainer = (props) => {
-  //const [ photos, setPhotos ] = useState([]);
+  const [ load, setLoad ] = useState(true);
+
+  const addPhoto = () => {
+    props.getPhoto(props.currentPage, 6)
+      .then(() => {
+        props.setCurrentPage(props.currentPage + 1);
+        setLoad(true);
+      });
+  }
+
+  const scrollEnd = () => {
+    const position = (
+      document.body.clientHeight - document.documentElement.clientHeight - window.pageYOffset
+    );
+
+    //console.log(position);
+
+    if (position <= 100 && position > 0 && load ) {
+      addPhoto();
+      setLoad(false);
+      console.log('load');
+    }
+  }
 
   useEffect(() => {
-    props.detPhoto(props.currentPage, 3);
-    //props.setCurrentPage(props.currentPage + 1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    console.log('useEffect');
 
+    if (props.photos.length === 0) {
+      addPhoto();
+    }
+
+    document.addEventListener('scroll', scrollEnd);
+
+    return () => {
+      document.removeEventListener('scroll', scrollEnd);
+    }
+  });
 
   return (
     <div className="photo-card-container fixed-container">
       <button
         className="photo-card-container"
-        onClick={props.addingPhoto}
+        onClick={addPhoto}
       >next</button>
 
       <ResponsiveMasonry
@@ -48,14 +77,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    detPhoto: (page, perPage) => {
-      dispatch( getPhotos(page, perPage) );
+    getPhoto: (page, perPage) => {
+      return dispatch( getPhotos(page, perPage) );
     },
     setCurrentPage: (page) => {
       dispatch( setCurrentPage(page) );
-    },
-    addingPhoto: () => {
-      dispatch( addingPhoto() );
     }
   }
 }

@@ -6,10 +6,12 @@ const unsplash = createApi({
   //...other fetch options
 });
 
+window.unsplash = unsplash;
+
 export const unsplashApi = {
   getPhotos(page, perPage) {
     return unsplash.photos.list({ page, perPage }).then(res => {
-      console.log(res);
+      //console.log(res);
       return res.response.results
     })
   }

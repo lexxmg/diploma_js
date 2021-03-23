@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 const PhotoCatd = (props) => {
   const [ descriptionShow, setDescriptionShow ] = useState(false);
 
-  console.log(props.photo);
+  //console.log(props.photo);
 
   return (
     <NavLink to={"/full/" + props.photo.id}>
