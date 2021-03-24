@@ -5,6 +5,7 @@ import { getPhotos, setCurrentPage } from '../../redux/photos';
 import { useEffect, useState } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import PhotoCatd from './PhotoCard/PhotoCard';
+import Preloader from '../Common/Preloader/Preloader.jsx';
 
 const PhotoCardContainer = (props) => {
   const [ load, setLoad ] = useState(true);
@@ -34,7 +35,13 @@ const PhotoCardContainer = (props) => {
   useEffect(() => {
     console.log('useEffect');
 
-    if (props.photos.length === 0) {
+    if (props.loading) {
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.documentElement.style.overflow = '';
+    }
+
+    if (props.photos.length === 0 && !props.loading) {
       addPhoto();
     }
 
@@ -50,7 +57,10 @@ const PhotoCardContainer = (props) => {
       <button
         className="photo-card-container"
         onClick={addPhoto}
-      >next</button>
+      >next
+      </button>
+
+      {props.loading && <Preloader />}
 
       <ResponsiveMasonry
         columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
@@ -71,7 +81,8 @@ const PhotoCardContainer = (props) => {
 const mapStateToProps = (state) => {
   return {
     photos: state.photos.photos,
-    currentPage: state.photos.currentPage
+    currentPage: state.photos.currentPage,
+    loading: state.photos.loading
   }
 }
 

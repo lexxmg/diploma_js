@@ -52,7 +52,7 @@ export const photos = (state = initialState, action) => {
     case SET_CURRENT_PAGE:
       return { ...state, currentPage: action.page };
     case SET_LOADING:
-      return { ...state, load: action.load };
+      return { ...state, loading: action.load };
     default:
       return state;
   }
