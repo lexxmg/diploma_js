@@ -1,7 +1,8 @@
 
 import './App.css';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import PhotoCardContainer from './components/PhotoCard/PhotoCardContainer';
+import PhotoFullContainer from './components/PhotoFull/PhotoFullContainer';
 
 
 function App() {
@@ -9,8 +10,10 @@ function App() {
     <div className="App">
       <Route exact path="/" component={PhotoCardContainer}></Route>
 
-      <Route path="/full">
-        <Link to="/"><h1>full</h1></Link>
+      <Route path="/full/:id?">
+        <div>
+          <PhotoFullContainer />
+        </div>
       </Route>
 
     </div>

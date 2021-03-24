@@ -11,7 +11,7 @@ const PhotoCardContainer = (props) => {
   const [ load, setLoad ] = useState(true);
 
   const addPhoto = () => {
-    props.getPhoto(props.currentPage, 6)
+    props.getPhoto(props.currentPage, 10)
       .then(() => {
         props.setCurrentPage(props.currentPage + 1);
         setLoad(true);
@@ -25,16 +25,13 @@ const PhotoCardContainer = (props) => {
 
     //console.log(position);
 
-    if (position <= 100 && position > 0 && load ) {
+    if (position <= 300 && position > 0 && load ) {
       addPhoto();
       setLoad(false);
-      console.log('load');
     }
   }
 
   useEffect(() => {
-    console.log('useEffect');
-
     if (props.loading) {
       document.documentElement.style.overflow = 'hidden';
     } else {
