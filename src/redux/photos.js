@@ -2,6 +2,7 @@
 import { unsplashApi } from '../api/api';
 
 const SET_PHOTOS = 'SET_PHOTOS',
+      SET_FULL_PHOTO = 'SET_FULL_PHOTO',
       SET_LOADING = 'SET_LOADING',
       SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
@@ -26,6 +27,13 @@ export const setLoading = (load) => {
   }
 }
 
+export const setFullPhoto = (photoId) => {
+  return {
+    type: SET_FULL_PHOTO,
+    photoId
+  }
+}
+
 export const getPhotos = (page, perPage) => {
   return dispatch => {
     dispatch( setLoading(true) );
@@ -41,6 +49,7 @@ export const getPhotos = (page, perPage) => {
 
 const initialState = {
   photos: [],
+  fullPhoto: null,
   currentPage: 1,
   loading: false
 }
@@ -49,6 +58,10 @@ export const photos = (state = initialState, action) => {
   switch (action.type) {
     case SET_PHOTOS:
       return { ...state, photos: [...state.photos, ...action.photos] };
+    case SET_FULL_PHOTO:
+      return { ...state, fullPhoto: state.photos.find(obj => {
+        return obj.id === action.photoId;
+      }) }
     case SET_CURRENT_PAGE:
       return { ...state, currentPage: action.page };
     case SET_LOADING:

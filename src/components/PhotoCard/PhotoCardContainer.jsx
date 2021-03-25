@@ -25,7 +25,7 @@ const PhotoCardContainer = (props) => {
 
     //console.log(position);
 
-    if (position <= 300 && position > 0 && load ) {
+    if (position <= 600 && position > 0 && load ) {
       addPhoto();
       setLoad(false);
     }

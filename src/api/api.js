@@ -14,12 +14,5 @@ export const unsplashApi = {
       //console.log(res);
       return res.response.results
     })
-  },
-  getFullPhoto(photoId) {
-    return unsplash.photos.get({ photoId: photoId }).then(result => {
-      if (result.type === 'success') {
-        return result.response;
-      }
-    });
   }
 }

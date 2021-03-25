@@ -2,10 +2,17 @@
 import './photo-full.css';
 
 const PhotoFull = (props) => {
-  console.log(props);
   return (
     <div>
-    { props.fullPhoto && Object.keys(props.fullPhoto).length !== 0 && <img src={props.fullPhoto.urls.full} alt=""/> }
+      <div className="photo-full__img-container">
+        {
+          props.fullPhoto &&
+            <img
+              src={props.fullPhoto.urls.full}
+              alt={props.fullPhoto.alt_description}
+            />
+        }
+      </div>
     </div>
   )
 }
