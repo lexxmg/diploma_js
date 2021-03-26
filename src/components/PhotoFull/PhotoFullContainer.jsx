@@ -2,10 +2,11 @@
 import './photo-full-container.css'
 import { connect } from 'react-redux';
 import PhotoFull from './PhotoFull/PhotoFull';
-import Preloader from '../Common/Preloader/Preloader.jsx';
+//import Preloader from '../Common/Preloader/Preloader.jsx';
+//import TopBarFullPhoto from './TopBarFullPhoto/TopBarFullPhoto';
 import { getFullPhoto } from '../../redux/fullPhoto';
 import { useEffect } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const PhotoFullContainer = (props) => {
   useEffect(() => {
@@ -14,10 +15,6 @@ const PhotoFullContainer = (props) => {
 
   return (
     <div className="photo-full-container">
-      {props.loading && <Preloader />}
-
-      <Link to="/"><h1>назад</h1></Link>
-
       <PhotoFull fullPhoto={props.fullPhoto}/>
     </div>
   )
