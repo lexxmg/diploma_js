@@ -11,6 +11,7 @@ import { withRouter } from 'react-router-dom';
 const PhotoFullContainer = (props) => {
   useEffect(() => {
     props.getFullPhoto(props.match.params.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
