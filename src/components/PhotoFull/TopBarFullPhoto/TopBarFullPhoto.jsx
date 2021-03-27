@@ -11,13 +11,19 @@ const TopBarFullPhoto = (props) => {
 
   return (
     <div className="top-bar-full-photo">
-      <Link to="/"><h1>назад</h1></Link>
+
       <img className="top-bar-full-photo__img"
         src={profileImageLarge || noFoto} alt={name || "noFoto"}
       />
       <span>{likes}</span>
       <a href={html} target="_blanc"><span>{name}</span></a>
       <time>{updated_at}</time>
+
+      <div className="top-bar-full-photo__close-container top-bar-full-photo-close-container">
+        <Link to="/" aria-label="закрыть">
+          <div className="top-bar-full-photo-close-container__close"></div>
+        </Link>
+      </div>
     </div>
   )
 }
