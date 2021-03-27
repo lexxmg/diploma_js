@@ -16,7 +16,7 @@ const PhotoFullContainer = (props) => {
 
   return (
     <div className="photo-full-container">
-      <PhotoFull fullPhoto={props.fullPhoto}/>
+      <PhotoFull {...props}/>
     </div>
   )
 }
@@ -24,6 +24,8 @@ const PhotoFullContainer = (props) => {
 const mapStateToProps = (state) => {
   return {
     fullPhoto: state.fullPhoto.photo,
+    likes: state.fullPhoto.likes,
+    firstName: state.fullPhoto.firstName,
     loading: state.fullPhoto.loading
   }
 }

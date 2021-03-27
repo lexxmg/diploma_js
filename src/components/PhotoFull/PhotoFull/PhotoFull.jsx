@@ -3,18 +3,18 @@ import './photo-full.css';
 import TopBarFullPhoto from '../TopBarFullPhoto/TopBarFullPhoto'
 
 const PhotoFull = (props) => {
-  console.log(props);
+  console.log(props.fullPhoto);
   return (
     <div className="photo-full">
-      <TopBarFullPhoto />
+      <TopBarFullPhoto {...props}/>
 
       <div className="photo-full__container">
         <div className="photo-full__img-container">
           {
-            props.fullPhoto && Object.keys(props.fullPhoto).length !== 0 &&
+            props.fullPhoto &&
               <img className="photo-full__img"
-                src={props.fullPhoto.urls.full}
-                alt={props.fullPhoto.alt_description}
+                src={props.fullPhoto}
+                alt={'props.fullPhoto.alt_description'}
               />
           }
         </div>
