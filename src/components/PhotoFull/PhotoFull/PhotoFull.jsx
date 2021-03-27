@@ -3,7 +3,7 @@ import './photo-full.css';
 import TopBarFullPhoto from '../TopBarFullPhoto/TopBarFullPhoto'
 
 const PhotoFull = (props) => {
-  console.log(props.fullPhoto);
+  const { fullPhoto, altDescription } = props;
   return (
     <div className="photo-full">
       <TopBarFullPhoto {...props}/>
@@ -11,10 +11,10 @@ const PhotoFull = (props) => {
       <div className="photo-full__container">
         <div className="photo-full__img-container">
           {
-            props.fullPhoto &&
+            fullPhoto &&
               <img className="photo-full__img"
-                src={props.fullPhoto}
-                alt={'props.fullPhoto.alt_description'}
+                src={fullPhoto}
+                alt={altDescription}
               />
           }
         </div>

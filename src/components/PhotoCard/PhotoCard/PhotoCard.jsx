@@ -19,7 +19,7 @@ const PhotoCatd = (props) => {
         <img
           className="photo-card__img"
           src={props.photo.urls.small}
-          alt={props.photo.photoalt_description}
+          alt={props.photo.alt_description}
         />
 
         {descriptionShow && <PhotoDescriptions {...props} />}
