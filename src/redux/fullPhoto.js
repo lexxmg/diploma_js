@@ -11,7 +11,10 @@ export const setPhotoData = (data) => {
     photo: data.urls.full,
     altDescription: data.alt_description,
     likes: data.likes,
-    firstName: data.user.first_name
+    name: data.user.name,
+    html: data.user.links.html,
+    profileImageLarge: data.user.profile_image.large,
+    updated_at: data.updated_at.split('T').[0]
   }
 }
 
@@ -43,8 +46,11 @@ export const getFullPhoto = (photoId) => {
 
 const initialState = {
   photo: null,
+  html: '#',
   likes: 0,
-  firstName: null,
+  updated_at: null,
+  profile_image: null,
+  name: null,
   alt_description: 'photo',
   loading: false
 }
@@ -53,11 +59,15 @@ const fullPhoto = (state = initialState, action) => {
   switch (action.type) {
     case SET_PHOTO_DATA:
       return { ...state, photo: action.photo, likes: action.likes,
-        firstName: action.firstName, altDescription: action.altDescription
+        name: action.name, altDescription: action.altDescription,
+        html: action.html, profileImageLarge: action.profileImageLarge,
+        updated_at: action.updated_at
        };
     case SET_PHOTO_DATA_NULL:
       return { ...state, photo: null, likes: 0,
-        firstName: null, altDescription: 'photo'
+        name: null, altDescription: 'photo',
+        html: '#', profileImageLarge: null,
+        updated_at: null
       };
     case SET_LOAD_FULL_PHOTO:
       return { ...state, loading: action.load };

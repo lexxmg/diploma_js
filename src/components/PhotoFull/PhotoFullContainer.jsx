@@ -24,9 +24,12 @@ const PhotoFullContainer = (props) => {
 const mapStateToProps = (state) => {
   return {
     fullPhoto: state.fullPhoto.photo,
+    updated_at: state.fullPhoto.updated_at,
+    html: state.fullPhoto.html,
+    profileImageLarge: state.fullPhoto.profileImageLarge,
     altDescription: state.fullPhoto.altDescription,
     likes: state.fullPhoto.likes,
-    firstName: state.fullPhoto.firstName,
+    name: state.fullPhoto.name,
     loading: state.fullPhoto.loading
   }
 }
