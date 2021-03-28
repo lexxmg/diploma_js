@@ -2,8 +2,8 @@
 import './photo-card-container.css';
 import { connect } from 'react-redux';
 import { getPhotos, setCurrentPage } from '../../redux/photos';
-import { unsplashApi } from '../../api/api';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import PhotoCatd from './PhotoCard/PhotoCard';
 import Preloader from '../Common/Preloader/Preloader.jsx';
@@ -58,7 +58,7 @@ const PhotoCardContainer = (props) => {
       >next
       </button>
 
-      <button onClick={unsplashApi.auth}>auth</button>
+      <Link to="/auth">auth</Link>
 
       {props.loading && <Preloader />}
 

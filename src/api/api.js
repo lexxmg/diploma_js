@@ -3,7 +3,9 @@ import { createApi } from 'unsplash-js';
 
 const CLIENT_ID = '_i66pu-AAF7Fk6drWH2jys78579pswAF2DW8Q__DSeQ',
       CLIENT_SECRET = '_Cp8wCr4mkPd0YqSQiDJAPLUtwi_wORX_gixD3WRCUU',
-      REDIRECR_URL = 'http://localhost:3000';
+      REDIRECR_URL = 'http://localhost:3000/auth';
+
+const authUrl = `https://unsplash.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECR_URL}&response_type=code&scope=public+write_likes`;
 
 const unsplash = createApi({
   accessKey: '_i66pu-AAF7Fk6drWH2jys78579pswAF2DW8Q__DSeQ'
@@ -27,8 +29,6 @@ export const unsplashApi = {
     });
   },
   auth(token) {
-    window.location.href = 'https://unsplash.com/oauth/authorize?client_id=' +
-      CLIENT_ID + '&redirect_uri=' + REDIRECR_URL +
-      '&response_type=code&scope=public+write_likes';
+    window.location.href = authUrl;
   }
 }
