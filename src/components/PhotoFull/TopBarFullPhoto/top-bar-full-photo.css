@@ -9,7 +9,20 @@
   color: white;
 }
 
-.top-bar-full-photo__img {
+.top-bar-full-photo__user-container {
+  display: flex;
+  align-items: center;
+}
+
+.top-bar-full-photo-user-container {
+
+}
+
+.top-bar-full-photo-user-container__link {
+
+}
+
+.top-bar-full-photo-user-container__img {
   display: block;
 
   width: 60px;
@@ -19,6 +32,35 @@
 
   object-fit: contain;
   object-position: center;
+}
+
+.top-bar-full-photo-user-container__link-user {
+  margin: 0 0 0 20px;
+}
+
+.top-bar-full-photo__like-container {
+
+}
+
+.like {
+  display: flex;
+  align-items: center;
+}
+
+.like__btn {
+  padding: 0;
+
+  border: none;
+
+  background: none;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+.like__count {
+
 }
 
 .top-bar-full-photo__close-container {
