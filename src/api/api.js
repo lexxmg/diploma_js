@@ -27,8 +27,8 @@ export const unsplashApi = {
     });
   },
   auth(token) {
-    window.location.href = `https://unsplash.com/oauth/authorize?
-      client_id=${CLIENT_ID}&redirect_uri=${REDIRECR_URL}&
-      response_type=code&scope=public+read_user+read_photos+write_likes`;
+    window.location.href = 'https://unsplash.com/oauth/authorize?client_id=' +
+      CLIENT_ID + '&redirect_uri=' + REDIRECR_URL +
+      '&response_type=code&scope=public+write_likes';
   }
 }
