@@ -21,5 +21,10 @@ export const unsplashApi = {
         return result.response;
       }
     });
+  },
+  auth(token) {
+    window.location.href = `https://unsplash.com/oauth/authorize?
+      client_id=_i66pu-AAF7Fk6drWH2jys78579pswAF2DW8Q__DSeQ&redirect_uri=http://localhost:3000&
+      response_type=code&scope=public+read_user+read_photos+write_likes`;
   }
 }
