@@ -29,6 +29,26 @@ export const unsplashApi = {
     });
   },
   auth(token) {
-    window.location.href = authUrl;
+    const code = window.location.search.split('code=')[1];
+
+    if (!code) {
+      window.location.href = authUrl;
+    } else {
+      console.log(code);
+      fetch('https://unsplash.com/oauth/token', {
+        method: 'POST',
+        headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          client_id: CLIENT_ID,
+          client_secret: CLIENT_SECRET,
+          redirect_uri: REDIRECR_URL,
+          code: code,
+          grant_type: 'authorization_code'
+        })
+      }).then(response => response.json()).then(data => console.log(data))
+    }
   }
 }

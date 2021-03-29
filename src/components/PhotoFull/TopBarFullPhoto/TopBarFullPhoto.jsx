@@ -17,7 +17,6 @@ const TopBarFullPhoto = (props) => {
   return (
     <div className="top-bar-full-photo">
 
-
       <div className="top-bar-full-photo__user-container top-bar-full-photo-user-container">
         <a className="top-bar-full-photo-user-container__link" href={html} target="_blanc">
           <img className="top-bar-full-photo-user-container__img"

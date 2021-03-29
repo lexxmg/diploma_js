@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 const Auth = (props) => {
   useEffect(() => {
     console.log(props);
-    //unsplashApi.auth();
+    unsplashApi.auth();
   }, []);
 
   return (

@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <Route exact path="/" component={PhotoCardContainer}></Route>
 
-      <Route path="/auth/:code?" component={Auth}></Route>
+      <Route path="/auth" component={Auth}></Route>
 
       <Route path="/full/:id?">
         <div>
