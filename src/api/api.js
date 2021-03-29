@@ -28,7 +28,7 @@ export const unsplashApi = {
       }
     });
   },
-  auth(token) {
+  auth() {
     const code = window.location.search.split('code=')[1];
 
     if (!code) {

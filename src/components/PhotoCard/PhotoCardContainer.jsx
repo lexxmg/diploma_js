@@ -10,6 +10,16 @@ import Preloader from '../Common/Preloader/Preloader.jsx';
 
 const PhotoCardContainer = (props) => {
   const [ load, setLoad ] = useState(true);
+  const [ scrollBarWidth, setScrollBarWidth ] = useState(0);
+
+  useEffect(() => {
+    const clientWidth = document.documentElement.clientWidth;
+
+    document.documentElement.style.overflow = 'hidden';
+    setScrollBarWidth(document.documentElement.clientWidth - clientWidth);
+    document.documentElement.style.overflow = '';
+    console.log(scrollBarWidth);
+  }, [scrollBarWidth]);
 
   const addPhoto = () => {
     props.getPhoto(props.currentPage, 10)
@@ -35,8 +45,10 @@ const PhotoCardContainer = (props) => {
   useEffect(() => {
     if (props.loading) {
       document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.paddingRight = scrollBarWidth + 'px';
     } else {
       document.documentElement.style.overflow = '';
+      document.documentElement.style.paddingRight = '';
     }
 
     if (props.photos.length === 0 && !props.loading) {
