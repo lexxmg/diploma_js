@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 
 const TopBarFullPhoto = (props) => {
   const { likes, name, html, profileImageLarge,
-    updatedAt, likedByUser
+    updatedAt, likedByUser, id, photoLike
   } = props;
 
-  console.log(props);
+  //console.log(props);
 
-  const likeUp = () => alert('likeUp');
+  const likeUp = () => photoLike(id);
   const likeDown = () => alert('likeDown');
 
   return (

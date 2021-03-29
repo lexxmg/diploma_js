@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PhotoFull from './PhotoFull/PhotoFull';
 //import Preloader from '../Common/Preloader/Preloader.jsx';
 //import TopBarFullPhoto from './TopBarFullPhoto/TopBarFullPhoto';
-import { getFullPhoto } from '../../redux/fullPhoto';
+import { getFullPhoto, photoLike } from '../../redux/fullPhoto';
 import { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 
@@ -31,7 +31,8 @@ const mapStateToProps = (state) => {
     likes: state.fullPhoto.likes,
     name: state.fullPhoto.name,
     loading: state.fullPhoto.loading,
-    likedByUser: state.fullPhoto.likedByUser
+    likedByUser: state.fullPhoto.likedByUser,
+    id: state.fullPhoto.id
   }
 }
 
@@ -39,6 +40,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getFullPhoto: (photoId) => {
       dispatch( getFullPhoto(photoId) );
+    },
+    photoLike: (photoId) => {
+      dispatch( photoLike(photoId) );
     }
   }
 }

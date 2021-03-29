@@ -30,10 +30,15 @@ export const getPhotos = (page, perPage) => {
   return dispatch => {
     dispatch( setLoading(true) );
 
-     return unsplashApi.getPhotos(page, perPage).then(photos => {
-      //console.log(photos);
-      dispatch( setPhotos(photos) );
-      dispatch( setLoading(false) );
+    return unsplashApi.getPhotos(page, perPage).then(res => {
+      console.log(res);
+      if (res.type === 'success') {
+        dispatch( setPhotos(res.response.results) );
+        dispatch( setLoading(false) );
+      } else {
+        alert('some error');
+        dispatch( setLoading(false) );
+      }
     })
   }
 }
