@@ -59,6 +59,12 @@
   cursor: pointer;
 }
 
+.like__btn:disabled {
+  opacity: .5;
+
+  cursor: not-allowed;
+}
+
 .like__count {
 
 }

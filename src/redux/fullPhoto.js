@@ -1,5 +1,6 @@
 
 import { unsplashApi } from '../api/api';
+import { setPhotosLike } from './photos';
 
 const SET_PHOTO_DATA = 'SET_PHOTO_DATA',
       SET_PHOTO_LIKE = 'SET_PHOTO_LIKE',
@@ -84,6 +85,7 @@ export const photoLike = (photoId) => {
         dispatch( setLoadFullPhoto(false) );
         dispatch( setLikedByUser(true) );
         dispatch( setPhotoLike(res.photo.likes) );
+        dispatch( setPhotosLike(res.photo.id, res.photo.likes) );
       }
     })
   }
@@ -106,6 +108,7 @@ export const photoUnLike = (photoId) => {
         dispatch( setLoadFullPhoto(false) );
         dispatch( setLikedByUser(false) );
         dispatch( setPhotoLike(res.photo.likes) );
+        dispatch( setPhotosLike(res.photo.id, res.photo.likes) );
       }
     })
   }

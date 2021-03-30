@@ -2,6 +2,7 @@
 import { unsplashApi } from '../api/api';
 
 const SET_PHOTOS = 'SET_PHOTOS',
+      SET_PHOTOS_LIKE = 'SET_PHOTOS_LIKE',
       SET_LOADING = 'SET_LOADING',
       SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
@@ -9,6 +10,13 @@ export const setPhotos = (photos) => {
   return {
     type: SET_PHOTOS,
     photos
+  }
+}
+export const setPhotosLike = (photoId, like) => {
+  return {
+    type: SET_PHOTOS_LIKE,
+    photoId,
+    like
   }
 }
 
@@ -54,6 +62,15 @@ export const photos = (state = initialState, action) => {
   switch (action.type) {
     case SET_PHOTOS:
       return { ...state, photos: [...state.photos, ...action.photos] };
+    case SET_PHOTOS_LIKE:
+      return {...state, photos: state.photos.map(obj => {
+          if (obj.id === action.photoId) {
+            return {...obj, likes: action.like}
+          } else {
+            return obj;
+          }
+        })
+      };
     case SET_CURRENT_PAGE:
       return { ...state, currentPage: action.page };
     case SET_LOADING:

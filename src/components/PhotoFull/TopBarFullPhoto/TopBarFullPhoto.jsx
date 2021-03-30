@@ -33,10 +33,8 @@ const TopBarFullPhoto = (props) => {
       <time>{updatedAt}</time>
 
       <div className="top-bar-full-photo__like-container like">
-
-        {loading && <span>load</span>}
-
         <button aria-label="лайк"
+          disabled={loading}
           onClick={ likedByUser ? likeDown : likeUp }
           className={
             'like__btn ' + (likedByUser ? 'icon-thumbs-down' : 'icon-thumbs-up')
