@@ -69,10 +69,44 @@ export const getFullPhoto = (photoId) => {
 
 export const photoLike = (photoId) => {
   return dispatch => {
+    dispatch( setLoadFullPhoto(true) );
+
     unsplashApi.photoLike(photoId).then(res => {
-      console.log(res)
-      dispatch( setLikedByUser(true) );
-      dispatch( setPhotoLike(res.photo.likes) );
+      if (res.errors) {
+        dispatch( setLoadFullPhoto(false) );
+
+        if ( res.errors[0] === 'OAuth error: The access token is invalid' ) {
+          alert('необходимо авторизоваться');
+        } else {
+          alert('some error');
+        }
+      } else {
+        dispatch( setLoadFullPhoto(false) );
+        dispatch( setLikedByUser(true) );
+        dispatch( setPhotoLike(res.photo.likes) );
+      }
+    })
+  }
+}
+
+export const photoUnLike = (photoId) => {
+  return dispatch => {
+    dispatch( setLoadFullPhoto(true) );
+
+    unsplashApi.photoUnLike(photoId).then(res => {
+      if (res.errors) {
+        dispatch( setLoadFullPhoto(false) );
+
+        if ( res.errors[0] === 'OAuth error: The access token is invalid' ) {
+          alert('необходимо авторизоваться');
+        } else {
+          alert('some error');
+        }
+      } else {
+        dispatch( setLoadFullPhoto(false) );
+        dispatch( setLikedByUser(false) );
+        dispatch( setPhotoLike(res.photo.likes) );
+      }
     })
   }
 }

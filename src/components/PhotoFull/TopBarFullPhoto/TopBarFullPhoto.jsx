@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 
 const TopBarFullPhoto = (props) => {
   const { likes, name, html, profileImageLarge,
-    updatedAt, likedByUser, id, photoLike
+    updatedAt, likedByUser, id, photoLike, photoUnLike, loading
   } = props;
 
   //console.log(props);
 
   const likeUp = () => photoLike(id);
-  const likeDown = () => alert('likeDown');
+  const likeDown = () => photoUnLike(id);
 
   return (
     <div className="top-bar-full-photo">
@@ -33,6 +33,9 @@ const TopBarFullPhoto = (props) => {
       <time>{updatedAt}</time>
 
       <div className="top-bar-full-photo__like-container like">
+
+        {loading && <span>load</span>}
+
         <button aria-label="лайк"
           onClick={ likedByUser ? likeDown : likeUp }
           className={

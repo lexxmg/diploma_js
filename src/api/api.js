@@ -31,7 +31,7 @@ export const unsplashApi = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + localStorage.getItem('token')
       }
-    }).then(res => res.json()).then(data => console.log(data));
+    }).then(res => res.json()).then(data => data);
   },
   photoLike(photoId) {
     return fetch(`https://api.unsplash.com/photos/${photoId}/like`, {
