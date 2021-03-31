@@ -51,12 +51,17 @@ export const getPhotos = (page, perPage) => {
   }
 }
 
+const endPhoto = [
+  {end: 'end', key: 0},
+  {end: 'end', key: 1},
+  {end: 'end', key: 1}
+]
 
 const initialState = {
   photos: [],
   currentPage: 1,
   loading: false,
-  endPhoto: {end: 'end'}
+  endPhoto: endPhoto
 }
 
 export const photos = (state = initialState, action) => {
@@ -70,9 +75,7 @@ export const photos = (state = initialState, action) => {
         photos: [
                   ...filterPhoto,
                   ...action.photos,
-                  state.endPhoto,
-                  state.endPhoto,
-                  state.endPhoto
+                  ...state.endPhoto
                 ]
       };
     case SET_PHOTOS_LIKE:

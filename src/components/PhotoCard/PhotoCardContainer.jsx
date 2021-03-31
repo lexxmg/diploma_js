@@ -12,6 +12,33 @@ const PhotoCardContainer = (props) => {
   const [ scrollBarWidth, setScrollBarWidth ] = useState(0);
 
   useEffect(() => {
+    const photoEnd = document.querySelector('.div-end');
+
+    if (photoEnd) {
+      console.log(photoEnd);
+
+      const observer = new IntersectionObserver((entries, imgObserver) => {
+        entries.forEach((item, i) => {
+          console.log(item.target);
+          //observer.observe(item.target);
+        });
+
+        console.log('load next');
+      }, { threshold: 0 });
+
+      observer.observe(document.querySelectorAll('.div-end')[0]);
+      observer.observe(document.querySelectorAll('.div-end')[1]);
+      observer.observe(document.querySelectorAll('.div-end')[2]);
+
+      return () => {
+        observer.unobserve(document.querySelectorAll('.div-end')[0]);
+        observer.unobserve(document.querySelectorAll('.div-end')[1]);
+        observer.unobserve(document.querySelectorAll('.div-end')[2]);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     const clientWidth = document.documentElement.clientWidth;
 
     document.documentElement.style.overflow = 'hidden';
@@ -77,7 +104,9 @@ const PhotoCardContainer = (props) => {
          <Masonry gutter="10px">
             {
               props.photos.map(obj => {
-                if (obj.end === 'end') return <div className="div-end"></div>
+                if (obj.end === 'end') {
+                  return <div key={obj.key}className="div-end"></div>
+                }
                 return <PhotoCatd key={obj.id} photo={obj} />
               })
             }
