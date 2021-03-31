@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+
+  padding: 20px 10px;
+
+  background-color: black;
+
+  color: white;
+}
+
+.header__user-container {
+  display: flex;
+
+  align-items: center;
+}
+
+.header-user {
+
+}
+
+.header-user__img {
+  display: block;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 60px;
+}
+
+.header-user__name {
+
+}

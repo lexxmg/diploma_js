@@ -44,7 +44,7 @@ export const getPhotos = (page, perPage) => {
         dispatch( setPhotos(res.response.results) );
         dispatch( setLoading(false) );
       } else {
-        alert('some error');
+        console.log('some error');
         dispatch( setLoading(false) );
       }
     })

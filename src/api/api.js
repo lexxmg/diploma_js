@@ -43,6 +43,16 @@ export const unsplashApi = {
       }
     }).then(res => res.json()).then(data => data);
   },
+  getAuthUser() {
+    return fetch(`https://api.unsplash.com/me`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }
+    }).then(res => res.json()).then(data => data);
+  },
   auth() {
     const code = window.location.search.split('code=')[1];
 

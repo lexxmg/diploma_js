@@ -3,7 +3,6 @@ import './photo-card-container.css';
 import { connect } from 'react-redux';
 import { getPhotos, setCurrentPage } from '../../redux/photos';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import PhotoCatd from './PhotoCard/PhotoCard';
 import Preloader from '../Common/Preloader/Preloader.jsx';
@@ -69,8 +68,6 @@ const PhotoCardContainer = (props) => {
         onClick={addPhoto}
       >next
       </button>
-
-      <Link to="/auth">auth</Link>
 
       {props.loading && <Preloader />}
 
