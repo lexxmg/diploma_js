@@ -55,13 +55,26 @@ export const getPhotos = (page, perPage) => {
 const initialState = {
   photos: [],
   currentPage: 1,
-  loading: false
+  loading: false,
+  endPhoto: {end: 'end'}
 }
 
 export const photos = (state = initialState, action) => {
   switch (action.type) {
     case SET_PHOTOS:
-      return { ...state, photos: [...state.photos, ...action.photos] };
+      const filterPhoto = state.photos.filter(photo => {
+        return !('end' in photo);
+      });
+      return {
+        ...state,
+        photos: [
+                  ...filterPhoto,
+                  ...action.photos,
+                  state.endPhoto,
+                  state.endPhoto,
+                  state.endPhoto
+                ]
+      };
     case SET_PHOTOS_LIKE:
       return {...state, photos: state.photos.map(obj => {
           if (obj.id === action.photoId) {

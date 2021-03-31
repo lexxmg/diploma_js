@@ -77,6 +77,7 @@ const PhotoCardContainer = (props) => {
          <Masonry gutter="10px">
             {
               props.photos.map(obj => {
+                if (obj.end === 'end') return <div className="div-end"></div>
                 return <PhotoCatd key={obj.id} photo={obj} />
               })
             }
