@@ -6,6 +6,8 @@
 
 .photo-card__img {
   display: block;
+
+  min-height: 200px; 
 }
 
 .photo-card__descriptions {

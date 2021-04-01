@@ -13,30 +13,40 @@ const PhotoCardContainer = (props) => {
 
   useEffect(() => {
     const photoEnd = document.querySelector('.div-end');
-
     if (photoEnd) {
-      console.log(photoEnd);
+      //console.log(photoEnd);
 
-      const observer = new IntersectionObserver((entries, imgObserver) => {
+      const observer = new IntersectionObserver(entries => {
         entries.forEach((item, i) => {
-          console.log(item.target);
-          //observer.observe(item.target);
-        });
+          if (item.intersectionRatio <= 0) return;
+          console.log(item);
+          console.log('load next');
 
-        console.log('load next');
-      }, { threshold: 0 });
+          addPhoto();
+          //observer.disconnect();
+          // if (item.isIntersecting) {
+          //   console.log('load next');
+          //   entries.target.classList.add('div-end');
+          //   observer.observe(entries.target);
+          //
+          //   //observer.unobserve(document.querySelectorAll('.div-end')[i]);
+          // } else {
+          //   entries.target.classList.remove('div-end');
+          // }
+        });
+      }, { threshold: 1 });
 
       observer.observe(document.querySelectorAll('.div-end')[0]);
       observer.observe(document.querySelectorAll('.div-end')[1]);
       observer.observe(document.querySelectorAll('.div-end')[2]);
-
+      //
       return () => {
         observer.unobserve(document.querySelectorAll('.div-end')[0]);
         observer.unobserve(document.querySelectorAll('.div-end')[1]);
         observer.unobserve(document.querySelectorAll('.div-end')[2]);
       }
     }
-  }, []);
+  });
 
   useEffect(() => {
     const clientWidth = document.documentElement.clientWidth;
