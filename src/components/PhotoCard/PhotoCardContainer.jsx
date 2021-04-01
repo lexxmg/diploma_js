@@ -12,56 +12,46 @@ const PhotoCardContainer = (props) => {
   const [ scrollBarWidth, setScrollBarWidth ] = useState(0);
 
   useEffect(() => {
-    const photoEnd = document.querySelector('.div-end');
+    const photoEnd = document.querySelectorAll('.div-end');
     if (photoEnd) {
-      //console.log(photoEnd);
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((item, i) => {
+        if (item.intersectionRatio <= 0) return;
+        //console.log(item);
+        console.log('load next');
+        addPhoto();
 
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach((item, i) => {
-          if (item.intersectionRatio <= 0) return;
-          console.log(item);
-          console.log('load next');
+        observer.unobserve(photoEnd[i]);
+      });
+    }, { threshold: 1 });
 
-          addPhoto();
-          //observer.disconnect();
-          // if (item.isIntersecting) {
-          //   console.log('load next');
-          //   entries.target.classList.add('div-end');
-          //   observer.observe(entries.target);
-          //
-          //   //observer.unobserve(document.querySelectorAll('.div-end')[i]);
-          // } else {
-          //   entries.target.classList.remove('div-end');
-          // }
-        });
-      }, { threshold: 1 });
 
-      observer.observe(document.querySelectorAll('.div-end')[0]);
-      observer.observe(document.querySelectorAll('.div-end')[1]);
-      observer.observe(document.querySelectorAll('.div-end')[2]);
-      //
+      photoEnd.forEach((item, i) => {
+        observer.observe(photoEnd[i]);
+      });
+
       return () => {
-        observer.unobserve(document.querySelectorAll('.div-end')[0]);
-        observer.unobserve(document.querySelectorAll('.div-end')[1]);
-        observer.unobserve(document.querySelectorAll('.div-end')[2]);
+        photoEnd.forEach((item, i) => {
+          observer.unobserve(photoEnd[i]);
+        });
       }
     }
   });
 
-  useEffect(() => {
-    const clientWidth = document.documentElement.clientWidth;
-
-    document.documentElement.style.overflow = 'hidden';
-    setScrollBarWidth(document.documentElement.clientWidth - clientWidth);
-    document.documentElement.style.overflow = '';
-    console.log(scrollBarWidth);
-  }, [scrollBarWidth]);
+  // useEffect(() => {
+  //   const clientWidth = document.documentElement.clientWidth;
+  //
+  //   document.documentElement.style.overflow = 'hidden';
+  //   setScrollBarWidth(document.documentElement.clientWidth - clientWidth);
+  //   document.documentElement.style.overflow = '';
+  //   console.log(scrollBarWidth);
+  // }, [scrollBarWidth]);
 
   const addPhoto = () => {
     props.getPhoto(props.currentPage, 10)
       .then(() => {
         props.setCurrentPage(props.currentPage + 1);
-        setLoad(true);
+        //setLoad(true);
       });
   }
 
@@ -79,23 +69,23 @@ const PhotoCardContainer = (props) => {
   }
 
   useEffect(() => {
-    if (props.loading) {
-      document.documentElement.style.overflow = 'hidden';
-      document.documentElement.style.paddingRight = scrollBarWidth + 'px';
-    } else {
-      document.documentElement.style.overflow = '';
-      document.documentElement.style.paddingRight = '';
-    }
+    // if (props.loading) {
+    //   document.documentElement.style.overflow = 'hidden';
+    //   document.documentElement.style.paddingRight = scrollBarWidth + 'px';
+    // } else {
+    //   document.documentElement.style.overflow = '';
+    //   document.documentElement.style.paddingRight = '';
+    // }
 
     if (props.photos.length === 0 && !props.loading) {
       addPhoto();
     }
-
-    document.addEventListener('scroll', scrollEnd);
-
-    return () => {
-      document.removeEventListener('scroll', scrollEnd);
-    }
+    //
+    // document.addEventListener('scroll', scrollEnd);
+    //
+    // return () => {
+    //   document.removeEventListener('scroll', scrollEnd);
+    // }
   });
 
   return (

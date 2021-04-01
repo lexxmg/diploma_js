@@ -54,7 +54,7 @@ export const getPhotos = (page, perPage) => {
 const endPhoto = [
   {end: 'end', key: 0},
   {end: 'end', key: 1},
-  {end: 'end', key: 1}
+  {end: 'end', key: 2}
 ]
 
 const initialState = {
