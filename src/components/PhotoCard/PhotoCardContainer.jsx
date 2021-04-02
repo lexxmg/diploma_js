@@ -16,15 +16,10 @@ class PhotoCardContainer extends Component {
       });
   }
 
-  componentDidMount() {
-    this.addPhoto();
-  }
+  observerPhotoEnd() {
+    const photoEnd = document.querySelectorAll('.div-end');
 
-  componentDidUpdate(prevProps) {
-    if (this.props.photos !== prevProps.photos) {
-      const photoEnd = document.querySelectorAll('.div-end');
-      //console.log(photoEnd);
-
+    if (photoEnd) {
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((item, i) => {
           if (item.intersectionRatio <= 0) return;
@@ -32,15 +27,29 @@ class PhotoCardContainer extends Component {
           //console.log('load next');
           this.addPhoto();
           //console.log(photoEnd);
-          observer.unobserve(photoEnd[0]);
-          observer.unobserve(photoEnd[1]);
-          observer.unobserve(photoEnd[2]);
+          for (let i = 0; i < 3; i++) {
+            observer.unobserve(photoEnd[i]);
+          }
         });
-      }, { threshold: 1 });
+      }, { threshold: 0.1 });
 
       photoEnd.forEach((item, i) => {
         observer.observe(photoEnd[i]);
       });
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.photos.length === 0) {
+      this.addPhoto();
+    }
+
+    this.observerPhotoEnd();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.currentPage !== prevProps.currentPage) {
+      this.observerPhotoEnd();
     }
   }
 
