@@ -4,7 +4,8 @@ import { unsplashApi } from '../api/api';
 const SET_PHOTOS = 'SET_PHOTOS',
       SET_PHOTOS_LIKE = 'SET_PHOTOS_LIKE',
       SET_LOADING = 'SET_LOADING',
-      SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+      SET_CURRENT_PAGE = 'SET_CURRENT_PAGE',
+      SET_CURRENT_POSITION = 'SET_CURRENT_POSITION';
 
 export const setPhotos = (photos) => {
   return {
@@ -51,6 +52,13 @@ export const getPhotos = (page, perPage) => {
   }
 }
 
+export const setCurrentPosition = (position) => {
+  return {
+    type: SET_CURRENT_POSITION,
+    position
+  }
+}
+
 const endPhoto = [
   {end: 'end', key: 0},
   {end: 'end', key: 1},
@@ -60,6 +68,7 @@ const endPhoto = [
 const initialState = {
   photos: [],
   currentPage: 1,
+  currentPosition: 0,
   loading: false,
   endPhoto: endPhoto
 }
@@ -91,6 +100,8 @@ export const photos = (state = initialState, action) => {
       return { ...state, currentPage: action.page };
     case SET_LOADING:
       return { ...state, loading: action.load };
+    case SET_CURRENT_POSITION:
+      return { ...state, currentPosition: action.position };
     default:
       return state;
   }

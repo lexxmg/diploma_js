@@ -1,7 +1,7 @@
 
 import './photo-card-container.css';
 import { connect } from 'react-redux';
-import { getPhotos, setCurrentPage } from '../../redux/photos';
+import { getPhotos, setCurrentPage, setCurrentPosition } from '../../redux/photos';
 import { Component } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import PhotoCatd from './PhotoCard/PhotoCard';
@@ -40,6 +40,8 @@ class PhotoCardContainer extends Component {
   }
 
   componentDidMount() {
+    window.scroll(0, this.props.currentPosition);
+
     if (this.props.photos.length === 0) {
       this.addPhoto();
     }
@@ -51,6 +53,11 @@ class PhotoCardContainer extends Component {
     if (this.props.currentPage !== prevProps.currentPage) {
       this.observerPhotoEnd();
     }
+  }
+
+  componentWillUnmount() {
+    const currentPosition = window.pageYOffset;
+    this.props.setCurrentPosition(currentPosition);
   }
 
   render() {
@@ -88,7 +95,8 @@ const mapStateToProps = (state) => {
   return {
     photos: state.photos.photos,
     currentPage: state.photos.currentPage,
-    loading: state.photos.loading
+    loading: state.photos.loading,
+    currentPosition: state.photos.currentPosition
   }
 }
 
@@ -99,6 +107,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setCurrentPage: (page) => {
       dispatch( setCurrentPage(page) );
+    },
+    setCurrentPosition: (position) => {
+      dispatch( setCurrentPosition(position) );
     }
   }
 }
