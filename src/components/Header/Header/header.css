@@ -31,5 +31,9 @@
 }
 
 .header-user__name {
+  margin: 0 0 0 20px;
+}
+
+.header__btn {
 
 }

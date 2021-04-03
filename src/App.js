@@ -3,7 +3,7 @@ import './App.css';
 import { Route } from 'react-router-dom';
 import PhotoCardContainer from './components/PhotoCard/PhotoCardContainer';
 import PhotoFullContainer from './components/PhotoFull/PhotoFullContainer';
-import Header from './components/Header/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Auth from './components/Auth/Auth/Auth';
 
 
@@ -13,7 +13,7 @@ function App() {
       <Route exact path="/" render={() => {
         return (
           <div>
-            <Header />
+            <HeaderContainer />
 
             <PhotoCardContainer />
           </div>

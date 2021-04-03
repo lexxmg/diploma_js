@@ -59,8 +59,7 @@ export const unsplashApi = {
     if (!code) {
       window.location.href = authUrl;
     } else {
-      console.log(code);
-      fetch('https://unsplash.com/oauth/token', {
+      return fetch('https://unsplash.com/oauth/token', {
         method: 'POST',
         headers: {
 					'Accept': 'application/json',
@@ -76,6 +75,8 @@ export const unsplashApi = {
       }).then(response => response.json()).then(data => {
         //console.log(data);
         localStorage.setItem('token', data.access_token);
+        //window.location.href = 'http://localhost:3000/';
+        return;
       })
     }
   }
