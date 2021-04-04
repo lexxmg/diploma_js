@@ -1,6 +1,7 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   width: 100%;
 
@@ -35,5 +36,28 @@
 }
 
 .header__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  min-width: 70px;
+  height: 30px;
+
+  padding: 5px;
+
+  background-color: white;
+
+  border: 1px solid black;
+
+  color: black;
+
+  cursor: pointer;
+}
+
+.header__btn:hover {
+  background-color: black;
+
+  border: 1px solid white;
+
+  color: white;
 }

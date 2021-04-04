@@ -1,13 +1,20 @@
 
 import './App.css';
 import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { isAutoriazed } from './redux/auth';
 import PhotoCardContainer from './components/PhotoCard/PhotoCardContainer';
 import PhotoFullContainer from './components/PhotoFull/PhotoFullContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Auth from './components/Auth/Auth/Auth';
 
 
-function App() {
+function App({ isAutoriazed }) {
+  useEffect(() => {
+    isAutoriazed();
+  }, [isAutoriazed]);
+
   return (
     <div className="App">
       <Route exact path="/" render={() => {
@@ -36,4 +43,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null, {isAutoriazed})(App);

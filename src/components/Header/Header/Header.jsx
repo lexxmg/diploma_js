@@ -18,10 +18,10 @@ const Header = (props) => {
         ? <button
             className="header__btn"
             onClick={props.logout}
-            >logout
+            >Выйти
           </button>
 
-        : <Link to="/auth">auth</Link>
+        : <Link className="header__btn" to="/auth">Войти</Link>
       }
     </div>
   )
