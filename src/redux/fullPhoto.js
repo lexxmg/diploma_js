@@ -17,7 +17,7 @@ export const setPhotoData = (data) => {
     name: data.user.name,
     html: data.user.links.html,
     profileImageLarge: data.user.profile_image.large,
-    updatedAt: data.updated_at.split('T').[0],
+    updatedAt: data.updated_at.split('T')[0],
     likedByUser: data.liked_by_user,
     id: data.id
   }
