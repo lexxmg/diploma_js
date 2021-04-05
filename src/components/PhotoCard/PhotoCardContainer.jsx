@@ -2,14 +2,14 @@
 import './photo-card-container.css';
 import { connect } from 'react-redux';
 import { getPhotos, setCurrentPage } from '../../redux/photos';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import PhotoCatd from './PhotoCard/PhotoCard';
 import Preloader from '../Common/Preloader/Preloader.jsx';
 
 const PhotoCardContainer = (props) => {
-  const [ load, setLoad ] = useState(true);
-  const [ scrollBarWidth, setScrollBarWidth ] = useState(0);
+  //const [ load, setLoad ] = useState(true);
+  //const [ scrollBarWidth, setScrollBarWidth ] = useState(0);
 
   useEffect(() => {
     const photoEnd = document.querySelectorAll('.div-end');
@@ -21,7 +21,10 @@ const PhotoCardContainer = (props) => {
         console.log('load next');
         addPhoto();
 
-        observer.unobserve(photoEnd[i]);
+        for (let i = 0; i < photoEnd.length; i++) {
+          observer.unobserve(photoEnd[i]);
+        }
+
       });
     }, { threshold: 1 });
 
@@ -36,7 +39,7 @@ const PhotoCardContainer = (props) => {
         });
       }
     }
-  });
+  }, [props.photos.length]);
 
   // useEffect(() => {
   //   const clientWidth = document.documentElement.clientWidth;
@@ -55,18 +58,18 @@ const PhotoCardContainer = (props) => {
       });
   }
 
-  const scrollEnd = () => {
-    const position = (
-      document.body.clientHeight - document.documentElement.clientHeight - window.pageYOffset
-    );
-
-    //console.log(position);
-
-    if (position <= 300 && position > 0 && load ) {
-      addPhoto();
-      setLoad(false);
-    }
-  }
+  // const scrollEnd = () => {
+  //   const position = (
+  //     document.body.clientHeight - document.documentElement.clientHeight - window.pageYOffset
+  //   );
+  //
+  //   //console.log(position);
+  //
+  //   if (position <= 300 && position > 0 && load ) {
+  //     addPhoto();
+  //     setLoad(false);
+  //   }
+  // }
 
   useEffect(() => {
     // if (props.loading) {
