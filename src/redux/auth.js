@@ -30,7 +30,11 @@ export const login = () => {
       return;
     }).then(() => {
       unsplashApi.getAuthUser().then(user => {
-        dispatch( setAuthUser(user) );
+        if (user.errors) {
+          console.log(user.errors);
+        } else {
+          dispatch( setAuthUser(user) );
+        }
       });
     });
   }
