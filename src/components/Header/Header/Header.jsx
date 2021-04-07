@@ -2,7 +2,7 @@
 import './header.css';
 import { Link } from 'react-router-dom';
 import noFoto from '../../../assets/images/nofoto.jpg';
-import { unsplashApi } from '../../../api/api';
+//import { unsplashApi } from '../../../api/api';
 import { useEffect } from 'react';
 
 const Header = (props) => {

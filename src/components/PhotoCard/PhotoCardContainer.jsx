@@ -2,33 +2,30 @@
 import './photo-card-container.css';
 import { connect } from 'react-redux';
 import { getPhotos, setCurrentPage } from '../../redux/photos';
-import { useEffect } from 'react';
+import { useEffect, useRef} from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import PhotoCatd from './PhotoCard/PhotoCard';
 import Preloader from '../Common/Preloader/Preloader.jsx';
 
 const PhotoCardContainer = (props) => {
-  //const [ load, setLoad ] = useState(true);
-  //const [ scrollBarWidth, setScrollBarWidth ] = useState(0);
+  const observer = useRef(
+    new window.IntersectionObserver(observerHandle, { threshold: 1 })
+  );
 
   useEffect(() => {
-    if (props.photos.length === 0 && !props.loading) {
+    if (props.photos.length === 0) {
       addPhoto();
     }
-  });
+  }, [props.photos]);
 
   function observerHandle(entries, observer) {
-    const photoEnd = document.querySelectorAll('.div-end');
+    //const photoEnd = document.querySelectorAll('.div-end');
 
-        for (let i = 0; i < photoEnd.length; i++) {
-          observer.unobserve(photoEnd[i]);
-        }
-
-      });
-    }, { threshold: 1 });
-
-      for (let i = 0; i < photoEnd.length; i++) {
-        observer.unobserve(photoEnd[i]);
+    entries.forEach(item => {
+      if (item.isIntersecting) {
+        console.log(entries);
+        observer.disconnect();
+        addPhoto();
       }
     });
   }
@@ -36,18 +33,14 @@ const PhotoCardContainer = (props) => {
   useEffect(() => {
     const photoEnd = document.querySelectorAll('.div-end');
       if (photoEnd) {
-
         photoEnd.forEach((item, i) => {
-          observer.observe(photoEnd[i]);
+          observer.current.observe(photoEnd[i]);
         });
-
-        return () => {
-          photoEnd.forEach((item, i) => {
-            observer.unobserve(photoEnd[i]);
-          });
-        }
       }
-    }
+
+      return () => {
+        observer.current.disconnect();
+      }
   }, [props.photos.length]);
 
   function addPhoto() {
@@ -57,39 +50,6 @@ const PhotoCardContainer = (props) => {
         //setLoad(true);
       });
   }
-
-  // const scrollEnd = () => {
-  //   const position = (
-  //     document.body.clientHeight - document.documentElement.clientHeight - window.pageYOffset
-  //   );
-  //
-  //   //console.log(position);
-  //
-  //   if (position <= 300 && position > 0 && load ) {
-  //     addPhoto();
-  //     setLoad(false);
-  //   }
-  // }
-
-  useEffect(() => {
-    // if (props.loading) {
-    //   document.documentElement.style.overflow = 'hidden';
-    //   document.documentElement.style.paddingRight = scrollBarWidth + 'px';
-    // } else {
-    //   document.documentElement.style.overflow = '';
-    //   document.documentElement.style.paddingRight = '';
-    // }
-
-    if (props.photos.length === 0 && !props.loading) {
-      addPhoto();
-    }
-    //
-    // document.addEventListener('scroll', scrollEnd);
-    //
-    // return () => {
-    //   document.removeEventListener('scroll', scrollEnd);
-    // }
-  });
 
   return (
     <div className="photo-card-container fixed-container">

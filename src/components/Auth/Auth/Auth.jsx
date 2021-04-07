@@ -8,7 +8,7 @@ const Auth = (props) => {
   useEffect(() => {
     console.log(props);
     unsplashApi.auth();
-  }, []);
+  }, [props]);
 
   return (
     <div className="auth-container">
