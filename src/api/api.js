@@ -9,6 +9,12 @@ const CLIENT_ID = '_i66pu-AAF7Fk6drWH2jys78579pswAF2DW8Q__DSeQ',
 
 const authUrl = `https://unsplash.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECR_URL}&response_type=code&scope=public+write_likes`;
 
+const headers = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer ' + localStorage.getItem('token')
+};
+
 const unsplash = createApi({
   accessKey: localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : '_i66pu-AAF7Fk6drWH2jys78579pswAF2DW8Q__DSeQ'
   //...other fetch options
@@ -26,31 +32,19 @@ export const unsplashApi = {
   photoUnLike(photoId) {
     return fetch(`https://api.unsplash.com/photos/${photoId}/like`, {
       method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('token')
-      }
+      headers
     }).then(res => res.json()).then(data => data);
   },
   photoLike(photoId) {
     return fetch(`https://api.unsplash.com/photos/${photoId}/like`, {
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('token')
-      }
+      headers
     }).then(res => res.json()).then(data => data);
   },
   getAuthUser() {
     return fetch(`https://api.unsplash.com/me`, {
       method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('token')
-      }
+      headers
     }).then(res => res.json()).then(data => data);
   },
   auth() {

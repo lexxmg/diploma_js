@@ -48,7 +48,10 @@ export const getPhotos = (page, perPage) => {
         console.log('some error');
         dispatch( setLoading(false) );
       }
-    })
+    }).catch(err => {
+      alert(err.message + ' повторите попытку позже');
+      dispatch( setLoading(false) );
+    });
   }
 }
 
