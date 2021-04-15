@@ -27,9 +27,10 @@ class PhotoCardContainer extends Component {
           //console.log('load next');
           this.addPhoto();
           //console.log(photoEnd);
-          for (let i = 0; i < 3; i++) {
-            observer.unobserve(photoEnd[i]);
-          }
+          // for (let i = 0; i < 3; i++) {
+          //   observer.unobserve(photoEnd[i]);
+          // }
+          observer.disconnect();
         });
       }, { threshold: 0.1 });
 

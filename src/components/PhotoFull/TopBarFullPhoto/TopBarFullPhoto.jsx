@@ -1,21 +1,49 @@
 
+import React from 'react';
 import './top-bar-full-photo.css';
 import '../../../assets/fonts-icon/fontello-cae0aaa7/css/fontello.css';
 import noFoto from '../../../assets/images/nofoto.jpg';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import AlertContainer from '../../Alert/AlertContainer';
 
 const TopBarFullPhoto = (props) => {
   const { likes, name, html, profileImageLarge,
-    updatedAt, likedByUser, id, photoLike, photoUnLike, loading
+    updatedAt, likedByUser, id, photoLike, photoUnLike, loading, isAuth
   } = props;
 
   //console.log(props);
 
-  const likeUp = () => photoLike(id);
-  const likeDown = () => photoUnLike(id);
+  const [ showAlert, setShowAlert ] = React.useState(false);
+  const [ redirectToAuth, setRedirectToAuth ] = React.useState(false);
+
+  const likeUp = () => {
+    photoLike(id);
+
+    if (!isAuth) {
+      setShowAlert(true);
+    }
+  }
+
+  const likeDown = () => {
+    photoUnLike(id);
+
+    if (!isAuth) {
+      setShowAlert(true);
+    }
+  }
 
   return (
     <div className="top-bar-full-photo">
+
+      { redirectToAuth && <Redirect to="/auth" /> }
+
+      {
+        showAlert &&
+          <AlertContainer
+            setShowAlert={setShowAlert}
+            setRedirectToAuth={setRedirectToAuth}
+          />
+      }
 
       <div className="top-bar-full-photo__user-container top-bar-full-photo-user-container">
         <a className="top-bar-full-photo-user-container__link" href={html} target="_blanc">

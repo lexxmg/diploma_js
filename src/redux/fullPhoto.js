@@ -77,9 +77,9 @@ export const photoLike = (photoId) => {
         dispatch( setLoadFullPhoto(false) );
 
         if ( res.errors[0] === 'OAuth error: The access token is invalid' ) {
-          alert('необходимо авторизоваться');
+          console.log('необходимо авторизоваться');
         } else {
-          alert('some error');
+          console.log('some error');
         }
       } else {
         dispatch( setLoadFullPhoto(false) );
@@ -100,9 +100,9 @@ export const photoUnLike = (photoId) => {
         dispatch( setLoadFullPhoto(false) );
 
         if ( res.errors[0] === 'OAuth error: The access token is invalid' ) {
-          alert('необходимо авторизоваться');
+          console.log('необходимо авторизоваться');
         } else {
-          alert('some error');
+          console.log('some error');
         }
       } else {
         dispatch( setLoadFullPhoto(false) );

@@ -1,15 +1,12 @@
 
 import './photo-full.css';
 import TopBarFullPhoto from '../TopBarFullPhoto/TopBarFullPhoto';
-import AlertContainer from '../../Alert/AlertContainer';
 
 const PhotoFull = (props) => {
   const { fullPhoto, altDescription } = props;
   return (
     <div className="photo-full">
       <TopBarFullPhoto {...props}/>
-
-      {true && <AlertContainer/>}
 
       <div className="photo-full__container">
         <div className="photo-full__img-container">

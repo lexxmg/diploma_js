@@ -23,6 +23,8 @@
 }
 
 .alert__text {
+  color: black;
+
   text-align: center;
 }
 

@@ -32,7 +32,8 @@ const mapStateToProps = (state) => {
     name: state.fullPhoto.name,
     loading: state.fullPhoto.loading,
     likedByUser: state.fullPhoto.likedByUser,
-    id: state.fullPhoto.id
+    id: state.fullPhoto.id,
+    isAuth: state.auth.isAuth
   }
 }
 

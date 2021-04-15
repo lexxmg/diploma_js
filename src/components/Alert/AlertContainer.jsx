@@ -6,7 +6,7 @@ import Alert from './Alert/Alert';
 const AlertContainer = (props) => {
   return (
     <>
-      <Alert />
+      <Alert setShowAlert={props.setShowAlert} setRedirectToAuth={props.setRedirectToAuth}/>
     </>
   )
 }
