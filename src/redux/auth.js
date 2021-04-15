@@ -27,8 +27,7 @@ export const login = () => {
   return dispatch => {
     unsplashApi.auth().then(() => {
       dispatch( setAuth(true) );
-      return;
-    }).then(() => {
+
       unsplashApi.getAuthUser().then(user => {
         if (user.errors) {
           console.log(user.errors);
@@ -52,7 +51,12 @@ export const isAutoriazed = () => {
   return dispatch => {
     if ( localStorage.getItem('token') ) {
       unsplashApi.getAuthUser().then(user => {
-        dispatch( setAuthUser(user) );
+        if (user.errors) {
+          console.log(user.errors);
+        } else {
+          dispatch( setAuthUser(user) );
+        }
+
         dispatch( setAuth(true) );
       });
     }

@@ -2,6 +2,7 @@
 import './photo-card-container.css';
 import { connect } from 'react-redux';
 import { getPhotos, setCurrentPage, setCurrentPosition } from '../../redux/photos';
+import { isAutoriazed } from '../../redux/auth';
 import { Component } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import PhotoCatd from './PhotoCard/PhotoCard';
@@ -45,6 +46,11 @@ class PhotoCardContainer extends Component {
 
     if (this.props.photos.length === 0) {
       this.addPhoto();
+    }
+
+    if (this.props.isAuth) {
+      console.log('запрос за пользователем');
+      //this.props.isAutoriazed();
     }
 
     this.observerPhotoEnd();
@@ -97,7 +103,8 @@ const mapStateToProps = (state) => {
     photos: state.photos.photos,
     currentPage: state.photos.currentPage,
     loading: state.photos.loading,
-    currentPosition: state.photos.currentPosition
+    currentPosition: state.photos.currentPosition,
+    isAuth: state.auth.isAuth
   }
 }
 
@@ -111,6 +118,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setCurrentPosition: (position) => {
       dispatch( setCurrentPosition(position) );
+    },
+    isAutoriazed: () => {
+      dispatch( isAutoriazed() );
     }
   }
 }

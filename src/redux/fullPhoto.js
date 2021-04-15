@@ -57,7 +57,7 @@ export const getFullPhoto = (photoId) => {
 
     unsplashApi.getFullPhoto(photoId).then(res => {
       if (res.type === 'success') {
-        console.log(res.response);
+        //console.log(res.response);
         dispatch( setPhotoData(res.response) );
         dispatch( setLoadFullPhoto(false) );
       } else {
