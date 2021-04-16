@@ -8,6 +8,8 @@ import { compose } from 'redux';
 import { login } from '../../../redux/auth.js'
 
 const Auth = ({ isAuth, login }) => {
+  const currentFullPhoto = window.localStorage.getItem('currentFullPhoto');
+
   useEffect(() => {
     //console.log(props);
     //unsplashApi.auth();
