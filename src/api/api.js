@@ -3,7 +3,7 @@ import { createApi } from 'unsplash-js';
 
 const CLIENT_ID = '_i66pu-AAF7Fk6drWH2jys78579pswAF2DW8Q__DSeQ',
       CLIENT_SECRET = '_Cp8wCr4mkPd0YqSQiDJAPLUtwi_wORX_gixD3WRCUU',
-      REDIRECR_URL = 'http://localhost:3000/auth';
+      REDIRECR_URL = 'http://localhost:3000';
 
 
 
@@ -75,7 +75,7 @@ export const unsplashApi = {
       }).then(response => response.json()).then(data => {
         //console.log(data);
         localStorage.setItem('token', data.access_token);
-        //window.location.href = 'http://localhost:3000/';
+        window.location.href = 'http://localhost:3000/';
         return;
       })
     }

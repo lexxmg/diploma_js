@@ -1,9 +1,18 @@
 
 import './header.css';
-import { Link } from 'react-router-dom';
+import React from 'react';
+//import { Link } from 'react-router-dom';
 import noFoto from '../../../assets/images/nofoto.jpg';
 
 const Header = (props) => {
+  React.useEffect(() => {
+    const code = window.location.search.split('code=')[1];
+
+    if (code) {
+      props.login();
+    }
+  });
+
   return (
     <div className="header">
       <div className="header__user-container header-user">
@@ -21,7 +30,11 @@ const Header = (props) => {
             >Выйти
           </button>
 
-        : <Link className="header__btn" to="/auth">Войти</Link>
+        : <button
+            className="header__btn"
+            onClick={props.login}
+            >Войти
+          </button>
       }
     </div>
   )
