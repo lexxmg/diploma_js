@@ -48,11 +48,6 @@ class PhotoCardContainer extends Component {
       this.addPhoto();
     }
 
-    if (this.props.isAuth) {
-      console.log('запрос за пользователем');
-      //this.props.isAutoriazed();
-    }
-
     this.observerPhotoEnd();
   }
 

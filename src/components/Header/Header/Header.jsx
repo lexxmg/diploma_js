@@ -5,14 +5,6 @@ import React from 'react';
 import noFoto from '../../../assets/images/nofoto.jpg';
 
 const Header = (props) => {
-  React.useEffect(() => {
-    const code = window.location.search.split('code=')[1];
-
-    if (code) {
-      props.login();
-    }
-  });
-
   return (
     <div className="header">
       <div className="header__user-container header-user">
