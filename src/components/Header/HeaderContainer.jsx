@@ -1,23 +1,33 @@
 
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout, login } from '../../redux/auth';
 import Header from './Header/Header';
 
 const HeaderContainer = (props) => {
+  const [isCurrentFullPhotoId, setIsCurrentFullPhotoId] = React.useState(false);
+  const currentFullPhotoId = window.localStorage.getItem('currentFullPhotoId');
+
   React.useEffect(() => {
-    const currentFullPhotoId = window.localStorage.getItem('currentFullPhotoId');
     const code = window.location.search.split('code=')[1];
 
     if (code) {
       props.login();
     } else if (currentFullPhotoId && props.isAuth) {
-      console.log(currentFullPhotoId);
+      //console.log(currentFullPhotoId);
+      setIsCurrentFullPhotoId(true);
     }
-  });
+  }, [currentFullPhotoId, props]);
 
   return (
-    <Header {...props} />
+    <>
+      {
+        isCurrentFullPhotoId
+          ? <Redirect to={currentFullPhotoId ? "/full/" + currentFullPhotoId : "/"} />
+          : <Header {...props} />
+      }
+    </>
   )
 }
 
