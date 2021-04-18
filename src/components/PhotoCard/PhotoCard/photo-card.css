@@ -7,7 +7,7 @@
 .photo-card__img {
   display: block;
 
-  min-height: 200px; 
+  min-height: 200px;
 }
 
 .photo-card__descriptions {
@@ -19,6 +19,16 @@
   bottom: 0px;
   left: 0px;
   z-index: 50;
+
+  padding: 10px;
+}
+
+.photo-card-descriptions__container {
+
+}
+
+.photo-card-descriptions__like-icon {
+  margin: 0 5px 0 0;
 }
 
 .photo-card-descriptions__likes {
@@ -26,5 +36,9 @@
 }
 
 .photo-card-descriptions__data {
+
+}
+
+.photo-card-descriptions__link {
 
 }

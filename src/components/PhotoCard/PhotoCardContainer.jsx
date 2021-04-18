@@ -42,9 +42,10 @@ class PhotoCardContainer extends Component {
   }
 
   componentDidMount() {
+    const code = window.location.search.split('code=')[1];
     window.scroll(0, this.props.currentPosition);
 
-    if (this.props.photos.length === 0) {
+    if (this.props.photos.length === 0 && !code) {
       this.addPhoto();
     }
 
