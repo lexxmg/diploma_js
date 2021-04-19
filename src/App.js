@@ -7,7 +7,7 @@ import { isAutoriazed } from './redux/auth';
 import PhotoCardContainer from './components/PhotoCard/PhotoCardContainer';
 import PhotoFullContainer from './components/PhotoFull/PhotoFullContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Auth from './components/Auth/Auth/Auth';
+//import Auth from './components/Auth/Auth/Auth';
 
 
 function App({ isAutoriazed }) {
@@ -27,8 +27,6 @@ function App({ isAutoriazed }) {
         )
       }}>
       </Route>
-
-      <Route path="/auth" component={Auth}></Route>
 
       <Route path="/full/:id?" render={() => {
         return (

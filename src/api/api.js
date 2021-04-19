@@ -3,7 +3,7 @@ import { createApi } from 'unsplash-js';
 
 const CLIENT_ID = '_i66pu-AAF7Fk6drWH2jys78579pswAF2DW8Q__DSeQ',
       CLIENT_SECRET = '_Cp8wCr4mkPd0YqSQiDJAPLUtwi_wORX_gixD3WRCUU',
-      REDIRECR_URL = 'http://localhost:3000';
+      REDIRECR_URL = 'http://unsplash.stalco.ru'; // 'http://localhost:3000';
 
 
 
