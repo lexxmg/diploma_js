@@ -69,7 +69,7 @@ class PhotoCardContainer extends Component {
         <button
           className="photo-card-container"
           onClick={() => { this.addPhoto() } }
-        >next
+        >{'next-' + (this.props.currentPage - 1)}
         </button>
 
         {this.props.loading && <Preloader />}
