@@ -1,32 +1,25 @@
 
 import './photo-card-container.css';
 import { connect } from 'react-redux';
-import { getPhotos, setCurrentPage, setCurrentPosition } from '../../redux/photos';
+import { getPhotos, getNextPhotos, setCurrentPage, setCurrentPosition } from '../../redux/photos';
 import { isAutoriazed } from '../../redux/auth';
-import { Component } from 'react';
+import React from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import PhotoCatd from './PhotoCard/PhotoCard';
 import Preloader from '../Common/Preloader/Preloader.jsx';
 
-class PhotoCardContainer extends Component {
-  addPhoto() {
-    this.props.getPhoto(this.props.currentPage, 10)
-      .then(() => {
-        this.props.setCurrentPage(this.props.currentPage + 1);
-        //setLoad(true);
-      });
-  }
-
+class PhotoCardContainer extends React.Component {
   observerPhotoEnd() {
     const photoEnd = document.querySelectorAll('.div-end');
-
+console.log(photoEnd);
     if (photoEnd) {
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((item, i) => {
           if (item.intersectionRatio <= 0) return;
           //console.log(item);
           //console.log('load next');
-          this.addPhoto();
+          this.props.getNextPhotos();
+          //this.addPhoto();
           //console.log(photoEnd);
           // for (let i = 0; i < 3; i++) {
           //   observer.unobserve(photoEnd[i]);
@@ -37,6 +30,7 @@ class PhotoCardContainer extends Component {
 
       photoEnd.forEach((item, i) => {
         observer.observe(photoEnd[i]);
+        console.log(photoEnd[i]);
       });
     }
   }
@@ -46,7 +40,7 @@ class PhotoCardContainer extends Component {
     window.scroll(0, this.props.currentPosition);
 
     if (this.props.photos.length === 0 && !code) {
-      this.addPhoto();
+      this.props.getPhoto(this.props.currentPage, 10);
     }
 
     this.observerPhotoEnd();
@@ -68,8 +62,8 @@ class PhotoCardContainer extends Component {
       <div className="photo-card-container fixed-container">
         <button
           className="photo-card-container"
-          onClick={() => { this.addPhoto() } }
-        >{'next-' + (this.props.currentPage - 1)}
+          onClick={() => { this.props.getNextPhotos() } }
+        >{'next-' + (this.props.currentPage)}
         </button>
 
         {this.props.loading && <Preloader />}
@@ -108,6 +102,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getPhoto: (page, perPage) => {
       return dispatch( getPhotos(page, perPage) );
+    },
+    getNextPhotos: () => {
+      return dispatch( getNextPhotos() );
     },
     setCurrentPage: (page) => {
       dispatch( setCurrentPage(page) );
