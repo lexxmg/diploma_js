@@ -9,6 +9,8 @@ const AlertContainer = (props) => {
       <Alert
         setShowAlert={props.setShowAlert}
         setRedirectToAuth={props.setRedirectToAuth}
+        currentPage={props.currentPage}
+        currentPosition={props.currentPosition}
         login={props.login}
       />
     </>
@@ -16,7 +18,8 @@ const AlertContainer = (props) => {
 }
 const mapStateToProps = (state) => {
   return {
-
+    currentPage: state.photos.currentPage,
+    currentPosition: state.photos.currentPosition
   }
 }
 

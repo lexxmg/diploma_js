@@ -7,6 +7,8 @@ const Alert = (props) => {
 
   const redirectToAuth = () => {
     window.localStorage.setItem('currentFullPhotoId', currentFullPhotoId);
+    window.localStorage.setItem('pageCount', props.currentPage);
+    window.localStorage.setItem('currentPosition', props.currentPosition);
     //props.setRedirectToAuth(true);
     props.login();
   }

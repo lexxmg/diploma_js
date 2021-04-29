@@ -79,6 +79,36 @@ export const getNextPhotos = () => {
   }
 }
 
+export const getFullPageCount = (count) => {
+  return dispatch => {
+    dispatch( setLoading(true) );
+
+    (async function() {
+      for (let i = 1; i <= count; i++) {
+        try {
+          await unsplashApi.getPhotos(i, 10).then(res => {
+            if (res.type === 'success') {
+              dispatch( setPhotos(res.response.results) );
+              //dispatch( setLoading(false) );
+            } else {
+              console.log('some error');
+              dispatch( setLoading(false) );
+            }
+          })
+          dispatch( setCurrentPage(i) );
+        } catch(err) {
+            alert(err.message + ' повторите попытку позже');
+            dispatch( setLoading(false) );
+        }
+      }
+      window.scroll(0, window.localStorage.getItem('currentPosition'));
+      dispatch( setLoading(false) );
+      window.localStorage.removeItem('pageCount');
+      window.localStorage.removeItem('currentPosition');
+    })();
+  }
+}
+
 export const setCurrentPosition = (position) => {
   return {
     type: SET_CURRENT_POSITION,

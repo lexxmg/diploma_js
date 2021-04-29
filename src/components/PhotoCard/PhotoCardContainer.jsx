@@ -1,7 +1,9 @@
 
 import './photo-card-container.css';
 import { connect } from 'react-redux';
-import { getPhotos, getNextPhotos, setCurrentPage, setCurrentPosition } from '../../redux/photos';
+import { getPhotos, getNextPhotos, setCurrentPage,
+         setCurrentPosition, getFullPageCount
+       } from '../../redux/photos';
 import { isAutoriazed } from '../../redux/auth';
 import { Component } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
@@ -18,7 +20,7 @@ class PhotoCardContainer extends Component {
           if (item.intersectionRatio <= 0) return;
 
           this.props.getNextPhotos();
-          
+
           observer.disconnect();
         });
       }, { threshold: 0.1 });
@@ -34,7 +36,11 @@ class PhotoCardContainer extends Component {
     window.scroll(0, this.props.currentPosition);
 
     if (this.props.photos.length === 0 && !code) {
-      this.props.getPhoto(this.props.currentPage, 10);
+      if ( window.localStorage.getItem('pageCount') ) {
+        this.props.getFullPageCount(window.localStorage.getItem('pageCount'));
+      } else {
+        this.props.getPhoto(this.props.currentPage, 10);
+      }
     }
 
     this.observerPhotoEnd();
@@ -100,6 +106,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     getNextPhotos: () => {
       return dispatch( getNextPhotos() );
+    },
+    getFullPageCount: (count) => {
+      dispatch( getFullPageCount(count) );
     },
     setCurrentPage: (page) => {
       dispatch( setCurrentPage(page) );
