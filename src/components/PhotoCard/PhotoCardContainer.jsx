@@ -67,7 +67,7 @@ class PhotoCardContainer extends Component {
     return (
       <div className="photo-card-container fixed-container">
         <button
-          className="photo-card-container"
+          className="photo-card-container__btn"
           onClick={() => { this.addPhoto() } }
         >{'next-' + (this.props.currentPage - 1)}
         </button>
