@@ -55,6 +55,30 @@ export const getPhotos = (page, perPage) => {
   }
 }
 
+export const getNextPhotos = () => {
+  return (dispatch, getState) => {
+    let currentPage = getState().photos.currentPage + 1;
+    dispatch( setCurrentPage(currentPage) );
+    currentPage = getState().photos.currentPage;
+
+    dispatch( setLoading(true) );
+
+    return unsplashApi.getPhotos(currentPage, 10).then(res => {
+      console.log(res);
+      if (res.type === 'success') {
+        dispatch( setPhotos(res.response.results) );
+        dispatch( setLoading(false) );
+      } else {
+        console.log('some error');
+        dispatch( setLoading(false) );
+      }
+    }).catch(err => {
+      alert(err.message + ' повторите попытку позже');
+      dispatch( setLoading(false) );
+    });
+  }
+}
+
 export const setCurrentPosition = (position) => {
   return {
     type: SET_CURRENT_POSITION,
