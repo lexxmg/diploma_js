@@ -109,7 +109,7 @@ export const getFullPageCount = (count) => {
         }
       }
       const currentPosition = window.scroll(0, window.localStorage.getItem('currentPosition'));
-      dispatch( setCurrentPosition( (currentPosition || 0) );
+      dispatch( setCurrentPosition( (currentPosition || 0) ) );
       dispatch( setLoading(false) );
       window.localStorage.removeItem('pageCount');
       window.localStorage.removeItem('currentPosition');
