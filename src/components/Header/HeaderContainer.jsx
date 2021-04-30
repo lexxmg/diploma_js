@@ -8,6 +8,7 @@ import Header from './Header/Header';
 const HeaderContainer = (props) => {
   const [isCurrentFullPhotoId, setIsCurrentFullPhotoId] = React.useState(false);
   const currentFullPhotoId = window.localStorage.getItem('currentFullPhotoId');
+  const token = window.localStorage.getItem('token');
 
   React.useEffect(() => {
     const code = window.location.search.split('code=')[1];
@@ -23,7 +24,7 @@ const HeaderContainer = (props) => {
   return (
     <>
       {
-        isCurrentFullPhotoId
+        (isCurrentFullPhotoId && token)
           ? <Redirect to={currentFullPhotoId ? "/full/" + currentFullPhotoId : "/"} />
           : <Header {...props} />
       }

@@ -47,7 +47,7 @@ export const getPhotos = (page, perPage) => {
     dispatch( setLoading(true) );
 
     return unsplashApi.getPhotos(page, perPage).then(res => {
-      console.log(res);
+      console.log('getPhotos');
       if (res.type === 'success') {
         dispatch( setPhotos(res.response.results) );
         dispatch( setLoading(false) );
@@ -71,7 +71,7 @@ export const getNextPhotos = () => {
     dispatch( setLoading(true) );
 
     return unsplashApi.getPhotos(currentPage, 10).then(res => {
-      console.log(res);
+      console.log('getNextPhotos');
       if (res.type === 'success') {
         dispatch( setPhotos(res.response.results) );
         dispatch( setLoading(false) );
@@ -94,6 +94,7 @@ export const getFullPageCount = (count) => {
       for (let i = 1; i <= count; i++) {
         try {
           await unsplashApi.getPhotos(i, 10).then(res => {
+            console.log('getFullPageCount');
             if (res.type === 'success') {
               dispatch( setPhotos(res.response.results) );
               //dispatch( setLoading(false) );
@@ -108,15 +109,13 @@ export const getFullPageCount = (count) => {
             dispatch( setLoading(false) );
         }
       }
-      const currentPosition = window.scroll(0, window.localStorage.getItem('currentPosition'));
+      const currentPosition = window.localStorage.getItem('currentPosition');
 
       if (currentPosition) {
         dispatch( setCurrentPosition(currentPosition) );
-        window.localStorage.removeItem('currentPosition');
+        //window.localStorage.removeItem('currentPosition');
       }
       dispatch( setLoading(false) );
-
-      window.localStorage.removeItem('pageCount');
     })();
   }
 }

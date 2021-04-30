@@ -38,12 +38,15 @@ class PhotoCardContainer extends Component {
     if (this.props.photos.length === 0 && !code) {
       if ( window.localStorage.getItem('pageCount') ) {
         this.props.getFullPageCount(window.localStorage.getItem('pageCount'));
+        window.localStorage.removeItem('pageCount');
+        console.log('donlowd full photo');
       } else {
         this.props.getPhoto(this.props.currentPage, 10);
+        console.log('donlowd photo');
       }
     }
 
-    this.observerPhotoEnd();
+    //this.observerPhotoEnd();
   }
 
   componentDidUpdate(prevProps) {

@@ -12,6 +12,8 @@ const PhotoFullContainer = (props) => {
   useEffect(() => {
     props.getFullPhoto(props.match.params.id);
     window.localStorage.removeItem('currentFullPhotoId');
+
+    //window.localStorage.removeItem('currentPosition');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

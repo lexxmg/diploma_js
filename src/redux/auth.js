@@ -40,6 +40,8 @@ export const login = () => {
 }
 
 export const logout = () => {
+  window.localStorage.removeItem('currentPosition');
+
   return dispatch => {
     localStorage.removeItem('token');
     dispatch( setAuth(false) );
