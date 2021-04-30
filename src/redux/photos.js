@@ -110,11 +110,13 @@ export const getFullPageCount = (count) => {
       }
       const currentPosition = window.scroll(0, window.localStorage.getItem('currentPosition'));
 
-      dispatch( setCurrentPosition(currentPosition) );
+      if (currentPosition) {
+        dispatch( setCurrentPosition(currentPosition) );
+        window.localStorage.removeItem('currentPosition');
+      }
       dispatch( setLoading(false) );
 
       window.localStorage.removeItem('pageCount');
-      window.localStorage.removeItem('currentPosition');
     })();
   }
 }
