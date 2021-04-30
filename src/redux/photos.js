@@ -35,6 +35,13 @@ export const setLoading = (load) => {
   }
 }
 
+export const setCurrentPosition = (position) => {
+  return {
+    type: SET_CURRENT_POSITION,
+    position
+  }
+}
+
 export const getPhotos = (page, perPage) => {
   return dispatch => {
     dispatch( setLoading(true) );
@@ -101,18 +108,12 @@ export const getFullPageCount = (count) => {
             dispatch( setLoading(false) );
         }
       }
-      window.scroll(0, window.localStorage.getItem('currentPosition'));
+      const currentPosition = window.scroll(0, window.localStorage.getItem('currentPosition'));
+      dispatch( setCurrentPosition( (currentPosition || 0) );
       dispatch( setLoading(false) );
       window.localStorage.removeItem('pageCount');
       window.localStorage.removeItem('currentPosition');
     })();
-  }
-}
-
-export const setCurrentPosition = (position) => {
-  return {
-    type: SET_CURRENT_POSITION,
-    position
   }
 }
 
