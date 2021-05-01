@@ -38,7 +38,7 @@ class PhotoCardContainer extends Component {
       this.props.getPhoto(this.props.currentPage, 10);
     }
 
-    //this.observerPhotoEnd();
+    this.observerPhotoEnd();
   }
 
   componentDidUpdate(prevProps) {
