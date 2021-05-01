@@ -3,11 +3,9 @@ import { createApi } from 'unsplash-js';
 
 const CLIENT_ID = '_i66pu-AAF7Fk6drWH2jys78579pswAF2DW8Q__DSeQ',
       CLIENT_SECRET = '_Cp8wCr4mkPd0YqSQiDJAPLUtwi_wORX_gixD3WRCUU',
-      REDIRECR_URL =  'http://localhost:3000'; //'http://unsplash.stalco.ru';
+      REDIRECT_URL =  'http://unsplash.stalco.ru' //'http://localhost:3000';
 
-
-
-const authUrl = `https://unsplash.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECR_URL}&response_type=code&scope=public+write_likes`;
+const authUrl = `https://unsplash.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public+write_likes`;
 
 const unsplash = createApi({
   accessKey: localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : '_i66pu-AAF7Fk6drWH2jys78579pswAF2DW8Q__DSeQ'
@@ -68,14 +66,14 @@ export const unsplashApi = {
         body: JSON.stringify({
           client_id: CLIENT_ID,
           client_secret: CLIENT_SECRET,
-          redirect_uri: REDIRECR_URL,
+          redirect_uri: REDIRECT_URL,
           code: code,
           grant_type: 'authorization_code'
         })
       }).then(response => response.json()).then(data => {
         //console.log(data);
         localStorage.setItem('token', data.access_token);
-        window.location.href = REDIRECR_URL;
+        window.location.href = REDIRECT_URL;
         return;
       })
     }

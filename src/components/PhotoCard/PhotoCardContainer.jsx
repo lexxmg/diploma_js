@@ -18,7 +18,7 @@ class PhotoCardContainer extends Component {
           if (item.intersectionRatio <= 0) return;
 
           this.props.getNextPhotos();
-          
+
           observer.disconnect();
         });
       }, { threshold: 0.1 });
@@ -66,16 +66,16 @@ class PhotoCardContainer extends Component {
         <ResponsiveMasonry
           columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
         >
-           <Masonry gutter="10px">
-              {
-                this.props.photos.map(obj => {
-                  if (obj.end === 'end') {
-                    return <div key={obj.key}className="div-end"></div>
-                  }
-                  return <PhotoCatd key={obj.id} photo={obj} />
-                })
-              }
-           </Masonry>
+          <Masonry gutter="10px">
+            {
+              this.props.photos.map(obj => {
+                if (obj.end === 'end') {
+                  return <div key={obj.key}className="div-end"></div>
+                }
+                return <PhotoCatd key={obj.id} photo={obj} />
+              })
+            }
+          </Masonry>
         </ResponsiveMasonry>
       </div>
     )
