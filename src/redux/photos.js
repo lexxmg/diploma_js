@@ -40,7 +40,7 @@ export const getPhotos = (page, perPage) => {
     dispatch( setLoading(true) );
 
     return unsplashApi.getPhotos(page, perPage).then(res => {
-      console.log(res);
+      //console.log(res);
       if (res.type === 'success') {
         dispatch( setPhotos(res.response.results) );
         dispatch( setLoading(false) );
@@ -64,7 +64,7 @@ export const getNextPhotos = () => {
     dispatch( setLoading(true) );
 
     return unsplashApi.getPhotos(currentPage, 10).then(res => {
-      console.log(res);
+      //console.log(res);
       if (res.type === 'success') {
         dispatch( setPhotos(res.response.results) );
         dispatch( setLoading(false) );

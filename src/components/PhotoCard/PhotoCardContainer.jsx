@@ -15,8 +15,9 @@ class PhotoCardContainer extends Component {
     if (photoEnd) {
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((item, i) => {
-          if (item.intersectionRatio <= 0) return;
-
+          //console.log(item.time);
+          if (item.intersectionRatio <= 0 || item.time < 1000) return;
+          //console.log(item.time);
           this.props.getNextPhotos();
 
           observer.disconnect();
@@ -43,6 +44,7 @@ class PhotoCardContainer extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.photos !== prevProps.photos) {
       this.observerPhotoEnd();
+      console.log('update');
     }
   }
 
