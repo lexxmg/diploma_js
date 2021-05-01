@@ -10,11 +10,12 @@ const HeaderContainer = (props) => {
   const currentFullPhotoId = window.localStorage.getItem('currentFullPhotoId');
 
   React.useEffect(() => {
-    const code = window.location.search.split('code=')[1];
+    //const code = window.location.search.split('code=')[1];
 
-    if (code) {
-      props.login();
-    } else if (currentFullPhotoId && props.isAuth) {
+    //if (code) {
+    //  props.login();
+  //  } else
+  if (currentFullPhotoId && props.isAuth) {
       //console.log(currentFullPhotoId);
       setIsCurrentFullPhotoId(true);
     }

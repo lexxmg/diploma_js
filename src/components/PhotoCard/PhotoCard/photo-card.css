@@ -5,11 +5,11 @@
 }
 
 .photo-card__nav-link {
-   cursor: zoom-in; 
+   cursor: zoom-in;
 }
 
 .photo-card__container {
-
+  background-color: #b9b9b9;
 }
 
 .photo-card__img {
